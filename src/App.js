@@ -28,7 +28,7 @@ class App extends Component {
         <td>{argItem.quantidade}</td>
         <td>R$ {argItem.valorUnitario}</td>
         <td>R$ {argItem.valorTotal}</td>
-        <td onClick={this.removeItem}><i className="fas fa-trash-alt red"></i></td>
+        <td onClick={() => this.removeItem(argIndex)}><i className="fas fa-trash-alt red"></i></td>
       </tr>
     )
   }
@@ -97,10 +97,10 @@ class App extends Component {
             </div>
             <div className="row">
               <div className="form-group col-sm-6">
-                <input className="form-control" type="text" ref="quantidade" placeholder="quantidade" />
+                <input className="form-control" type="number" ref="quantidade" placeholder="quantidade" />
               </div>
               <div className="form-group col-sm-6">
-                <input className="form-control" type="text" ref="valorUnitario" placeholder="Valor Un" />
+                <input className="form-control" type="number" ref="valorUnitario" placeholder="Valor Un" />
               </div>
             </div>
             <button type="button" value="submit" onClick={this.addNewItem}className="btn btn-primary"> Adcionar</button>
