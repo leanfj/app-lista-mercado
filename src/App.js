@@ -97,10 +97,10 @@ class App extends Component {
             </div>
             <div className="row">
               <div className="form-group col-sm-6">
-                <input className="form-control" type="number" ref="quantidade" placeholder="quantidade" />
+                <input className="form-control" type="number" ref="quantidade" placeholder="Quantidade/Peso" />
               </div>
               <div className="form-group col-sm-6">
-                <input className="form-control" type="number" ref="valorUnitario" placeholder="Valor Un" />
+                <input className="form-control" type="number" ref="valorUnitario" placeholder="Valor Un." />
               </div>
             </div>
             <button type="button" value="submit" onClick={this.addNewItem}className="btn btn-primary"> Adcionar</button>
