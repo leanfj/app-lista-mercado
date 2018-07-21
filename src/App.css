@@ -1,5 +1,33 @@
+.app__title {
+  text-align: center;
+}
+.fa-trash-alt {
+  color: #f72727;
+  cursor: pointer;
+  font-size: 18px;
+}
 .total__compra {
   margin-bottom: 30px;
   padding: 10px;
   font-size: 1.2rem;
+}
+
+/* Transition */
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }

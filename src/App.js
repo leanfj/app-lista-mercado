@@ -1,5 +1,7 @@
+import { CSSTransitionGroup } from 'react-transition-group';
 import React, { Component } from 'react';
 import './App.css';
+
 
 const dados = (localStorage.getItem('lista') ? JSON.parse(localStorage.getItem('lista')) : []);
 
@@ -9,9 +11,7 @@ class App extends Component {
     this.state = {
       items: [],
     };
-    this.renderItems = this.renderItems.bind(this);
-    this.addNewItem = this.addNewItem.bind(this);
-    this.removeItem = this.removeItem.bind(this);
+
   }
   
   componentDidMount() {
@@ -21,19 +21,19 @@ class App extends Component {
     );
   }
 
-  renderItems(argItem, argIndex) {
+  renderItems (argItem, argIndex) {
     return (
       <tr key={argIndex}>
         <td>{argItem.item}</td>
         <td>{argItem.quantidade}</td>
         <td>R$ {argItem.valorUnitario}</td>
         <td>R$ {argItem.valorTotal}</td>
-        <td onClick={() => this.removeItem(argIndex)}><i className="fas fa-trash-alt red"></i></td>
+        <td onClick={() => this.removeItem(argIndex)}><i className="fas fa-trash-alt"></i></td>
       </tr>
     )
   }
 
-  addNewItem() {
+  addNewItem () {
     const newItem = {
       item: this.refs.item.value,
       quantidade: this.refs.quantidade.value,
@@ -71,7 +71,14 @@ class App extends Component {
 
     return (
       <div className="container">
-        <h1>Lista de Compras</h1>
+      <CSSTransitionGroup
+      transitionName="example"
+      transitionAppear={true}
+      transitionAppearTimeout={500}
+      transitionEnter={false}
+      transitionLeave={false}>
+        <h1 className="app__title">Lista de Compras</h1>
+        </CSSTransitionGroup>
         <table className="table table-striped table-sm">
           <thead className="thead-dark">
             <tr>
