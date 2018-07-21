@@ -1,4 +1,3 @@
-import { CSSTransitionGroup } from 'react-transition-group';
 import React, { Component } from 'react';
 import './App.css';
 
@@ -12,6 +11,9 @@ class App extends Component {
       items: [],
     };
 
+    this.renderItems = this.renderItems.bind(this);
+    this.addNewItem = this.addNewItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
   }
   
   componentDidMount() {
@@ -71,14 +73,7 @@ class App extends Component {
 
     return (
       <div className="container">
-      <CSSTransitionGroup
-      transitionName="example"
-      transitionAppear={true}
-      transitionAppearTimeout={500}
-      transitionEnter={false}
-      transitionLeave={false}>
         <h1 className="app__title">Lista de Compras</h1>
-        </CSSTransitionGroup>
         <table className="table table-striped table-sm">
           <thead className="thead-dark">
             <tr>
