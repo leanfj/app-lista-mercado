@@ -1,10 +1,20 @@
 .app__title {
   text-align: center;
 }
+tr {
+  text-align: center;
+}
 .fa-trash-alt {
   color: #f72727;
   cursor: pointer;
   font-size: 18px;
+}
+
+.fa-pencil-alt {
+  color: #ffc107;
+  cursor: pointer;
+  font-size: 18px;
+
 }
 .total__compra {
   margin-bottom: 30px;

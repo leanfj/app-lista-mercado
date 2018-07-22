@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
+//Components
+import Modal from './components/Modal';
+
 
 const dados = (localStorage.getItem('lista') ? JSON.parse(localStorage.getItem('lista')) : []);
 
@@ -9,11 +12,13 @@ class App extends Component {
     super(props);
     this.state = {
       items: [],
+      modalShow: false
     };
 
     this.renderItems = this.renderItems.bind(this);
     this.addNewItem = this.addNewItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
   
   componentDidMount() {
@@ -30,9 +35,23 @@ class App extends Component {
         <td>{argItem.quantidade}</td>
         <td>R$ {argItem.valorUnitario}</td>
         <td>R$ {argItem.valorTotal}</td>
-        <td onClick={() => this.removeItem(argIndex)}><i className="fas fa-trash-alt"></i></td>
+        <td onClick={() => this.removeItem(argIndex)} ><i className="fas fa-trash-alt"></i></td>
+        <td onClick={() => this.openModal()} ><i className="fas fa-pencil-alt"></i></td>
       </tr>
+
     )
+  }
+
+  openModal () {
+    console.log('openModal');
+    this.setState({modalShow: true});
+    
+
+  }
+
+  closeModal () {
+    this.setState({modalShow: false});
+    console.log('closeModal');
   }
 
   addNewItem () {
@@ -82,6 +101,7 @@ class App extends Component {
               <th>Valor Un.</th>
               <th>Valor Total</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -91,6 +111,7 @@ class App extends Component {
         <div className="total__compra text-light bg-dark d-flex justify-content-center">
           Total Compra R$ {totalCompra.toFixed(2)}
         </div>
+        <Modal show={this.state.modalShow} closeModal={this.closeModal} />
         <div className="add-item">
           <h5 className="text-center">Adcionar novo item</h5>
           <form action="">
