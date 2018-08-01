@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       items: [],
       modalShow: false,
+      erroMsg: "",
       itemIndex: "",
       itemName: "",
       itemQuant: "",
@@ -70,7 +71,9 @@ class App extends Component {
   }
 
   closeModal() {
-    this.setState({ modalShow: false });
+    this.setState({
+      modalShow: false
+    });
   }
 
   addNewItem() {
@@ -82,16 +85,20 @@ class App extends Component {
         this.refs.valorUnitario.value * this.refs.quantidade.value
       ).toFixed(2)
     };
+    if (newItem.item === "") {
+      this.setState({ erroMsg: "Informe o Item" });
+    } else {
+      dados.push(newItem);
+      localStorage.setItem("lista", JSON.stringify(dados));
+      this.setState({
+        items: JSON.parse(localStorage.getItem("lista")),
+        erroMsg: ""
+      });
 
-    dados.push(newItem);
-    localStorage.setItem("lista", JSON.stringify(dados));
-    this.setState({
-      items: JSON.parse(localStorage.getItem("lista"))
-    });
-
-    this.refs.item.value = "";
-    this.refs.quantidade.value = "";
-    this.refs.valorUnitario.value = "";
+      this.refs.item.value = "";
+      this.refs.quantidade.value = "";
+      this.refs.valorUnitario.value = "";
+    }
   }
 
   removeItem(argIndex) {
@@ -102,7 +109,6 @@ class App extends Component {
     });
   }
   updateItem(index, quant, price) {
-    console.log(dados);
     dados[index].quantidade = quant;
     dados[index].valorUnitario = price;
     dados[index].valorTotal = (quant * price).toFixed(2);
@@ -152,6 +158,16 @@ class App extends Component {
         />
         <div className="add-item">
           <h5 className="text-center">Adcionar novo item</h5>
+          <div
+            className={
+              this.state.erroMsg
+                ? "visible alert alert-danger"
+                : "invisible alert alert-danger"
+            }
+            role="alert"
+          >
+            {this.state.erroMsg}
+          </div>
           <form action="">
             <div className="form-group">
               <input
@@ -159,6 +175,7 @@ class App extends Component {
                 type="text"
                 ref="item"
                 placeholder="Item"
+                required
               />
             </div>
             <div className="row">

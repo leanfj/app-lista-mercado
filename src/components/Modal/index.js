@@ -4,9 +4,12 @@ import "./modal.css";
 class Modal extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { quant: "", preco: "" };
   }
-
+  componentWillUpdate() {
+    this.refs.quantidade.value = "";
+    this.refs.preco.value = "";
+  }
   render() {
     const showModal = {
       display: "block"
@@ -40,7 +43,6 @@ class Modal extends Component {
                       type="number"
                       placeholder="Quantidade/Peso"
                       ref="quantidade"
-                      defaultValue={this.props.itemQuant}
                     />
                   </div>
                   <div className="form-group col-sm-6">
@@ -49,7 +51,6 @@ class Modal extends Component {
                       type="number"
                       placeholder="Valor Un."
                       ref="preco"
-                      defaultValue={this.props.itemPrice}
                     />
                   </div>
                 </div>
